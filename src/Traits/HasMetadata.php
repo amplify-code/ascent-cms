@@ -1,9 +1,9 @@
 <?php
 
-namespace AscentCreative\CMS\Traits;
+namespace AmplifyCode\AscentCMS\Traits;
 
-use AscentCreative\CMS\Traits\BaseTrait;
-use AscentCreative\CMS\Models\Metadata;
+use AmplifyCode\AscentCMS\Traits\BaseTrait;
+use AmplifyCode\AscentCMS\Models\Metadata;
 
 use Illuminate\Http\Request;
 

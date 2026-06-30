@@ -1,9 +1,9 @@
 <?php
 
-namespace AscentCreative\CMS\Traits;
+namespace AmplifyCode\AscentCMS\Traits;
 
-use AscentCreative\CMS\Traits\BaseTrait;
-use AscentCreative\CMS\Models\File;
+use AmplifyCode\AscentCMS\Traits\BaseTrait;
+use AmplifyCode\AscentCMS\Models\File;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -42,7 +42,7 @@ trait HasAttachments {
 
     /* define the relationship */
     public function attachments() {
-        return $this->morphMany(\AscentCreative\CMS\Models\File::class, 'attachedto')->orderby('attachedto_sort');
+        return $this->morphMany(\AmplifyCode\AscentCMS\Models\File::class, 'attachedto')->orderby('attachedto_sort');
      }
 
 
@@ -67,7 +67,7 @@ trait HasAttachments {
         // - delete files for this model which aren't in the incoming data
         $this->attachments()->whereNotIn('id', $ids)->delete(); 
         // - save files which are (will consolidate existing and add new)
-        $this->attachments()->saveMany(\AscentCreative\CMS\Models\File::whereIn('id', $ids)->get());
+        $this->attachments()->saveMany(\AmplifyCode\AscentCMS\Models\File::whereIn('id', $ids)->get());
 
         // FUDGE - due to the fact that the files are saved on upload, 
         // they don't respect / capture their sort order in the UI field.

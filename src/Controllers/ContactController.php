@@ -1,19 +1,19 @@
 <?php
 
-namespace AscentCreative\CMS\Controllers;
+namespace AmplifyCode\AscentCMS\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
  
 use Illuminate\Database\Eloquent\Model;
 
-use AscentCreative\CMS\Models\ContactRequest;
-use AscentCreative\CMS\Notifications\ContactRequestNotification;
+use AmplifyCode\AscentCMS\Models\ContactRequest;
+use AmplifyCode\AscentCMS\Notifications\ContactRequestNotification;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 
-use AscentCreative\CMS\Settings\SiteSettings;
+use AmplifyCode\AscentCMS\Settings\SiteSettings;
 
 
 class ContactController extends Controller
@@ -103,11 +103,11 @@ class ContactController extends Controller
         // forward to confirmation page.
         // done either way so as not to let on to the spammers...
         session()->flash('enquiry_received', 1);
-        $page_id = app(\AscentCreative\CMS\Settings\SiteSettings::class)->contact_confirm_page_id;
-        $page = \AscentCreative\CMS\Models\Page::find($page_id);
+        $page_id = app(\AmplifyCode\AscentCMS\Settings\SiteSettings::class)->contact_confirm_page_id;
+        $page = \AmplifyCode\AscentCMS\Models\Page::find($page_id);
             
         if($page) {
-            return app()->make(\AscentCreative\CMS\Controllers\PageController::class)->show($page);
+            return app()->make(\AmplifyCode\AscentCMS\Controllers\PageController::class)->show($page);
         } else {
             return redirect($_SERVER['HTTP_REFERER']);
         }

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ headTitle()->add('Admin')->render(' :: ') }}</title>
-    <link rel="alternate icon" href="/storage/{!! AscentCreative\CMS\Models\File::find(app(AscentCreative\CMS\Settings\SiteSettings::class)->favicon)->filepath ?? '../vendor/ascent/cms/img/ascent-badge-trans.png' !!}">
+    <link rel="alternate icon" href="/storage/{!! AmplifyCode\AscentCMS\Models\File::find(app(AmplifyCode\AscentCMS\Settings\SiteSettings::class)->favicon)->filepath ?? '../vendor/ascent/cms/img/ascent-badge-trans.png' !!}">
 
     
  

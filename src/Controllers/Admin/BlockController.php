@@ -1,8 +1,8 @@
 <?php
 
-namespace AscentCreative\CMS\Controllers\Admin;
+namespace AmplifyCode\AscentCMS\Controllers\Admin;
 
-use AscentCreative\CMS\Controllers\AdminBaseController;
+use AmplifyCode\AscentCMS\Controllers\AdminBaseController;
 
 use Illuminate\Http\Request;
 
@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class BlockController extends AdminBaseController
 {
 
-    static $modelClass = 'AscentCreative\CMS\Models\Block';
+    static $modelClass = 'AmplifyCode\AscentCMS\Models\Block';
     static $bladePath = "cms::admin.blocks";
 
 

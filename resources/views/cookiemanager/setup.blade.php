@@ -11,7 +11,7 @@
 
 @endphp
 
-@foreach(\AscentCreative\CMS\Models\CookieType::all() as $cType)
+@foreach(\AmplifyCode\AscentCMS\Models\CookieType::all() as $cType)
     {{-- for each cookie type, load the templates --}}
     @includeIf('cookiemanager.' . $cType->slug, ['cType'=>$cType])
 
@@ -72,7 +72,7 @@
 
             <h5 class="modal-title mb-3" id="exampleModalLabel">Cookie Settings</h5>
 
-            @foreach(\AscentCreative\CMS\Models\CookieType::all() as $cType)
+            @foreach(\AmplifyCode\AscentCMS\Models\CookieType::all() as $cType)
 
                 <div class="acm_cookietype @if($cType->mandatory) acm_mandatory @endif  @if(isset($_COOKIE['acm_' . $cType->slug]) && $_COOKIE['acm_' . $cType->slug]==1) acm_selected @endif  " id="acm_{{ $cType->slug }}" data-cookie="acm_{{ $cType->slug }}">
                     <div class="acm_ct_title">

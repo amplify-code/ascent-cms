@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Engines;
+namespace AmplifyCode\AscentCMS\Engines;
 
 use Illuminate\Support\LazyCollection;
 use Illuminate\Database\Eloquent\Collection;

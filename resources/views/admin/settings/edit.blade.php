@@ -82,7 +82,7 @@
 
                 {{-- <x-cms-form-fileupload type="text" name="homa" label="Favicon" value="{{ old('favicon', $model->favicon) }}"> --}}
                 <x-cms-form-foreignkeyselect type="select" name="homepage_id" label="Homepage" value="{{ old('homepage_id', $model->homepage_id) }}"
-                    :query="\AscentCreative\CMS\Models\Page::query()"
+                    :query="\AmplifyCode\AscentCMS\Models\Page::query()"
                     >
                     Select the page to load at the home url for the site
                 </x-cms-form-foreignkeyselect>
@@ -166,7 +166,7 @@
 
 
                 <x-cms-form-foreignkeyselect type="select" name="contact_confirm_page_id" label="Confirmation Page" value="{{ old('contact_confirm_page_id', $model->contact_confirm_page_id) }}"
-                    :query="\AscentCreative\CMS\Models\Page::query()"
+                    :query="\AmplifyCode\AscentCMS\Models\Page::query()"
                     >
                     Select the page to display after a successful contact form submission
                 </x-cms-form-foreignkeyselect>

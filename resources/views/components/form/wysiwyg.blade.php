@@ -58,7 +58,7 @@
 
                 extraPlugins: 'font,richcombo,snippet,photogallery,justify,panel,button,floatpanel,panelbutton,colorbutton,colordialog',
                 contentsCss: [ '/css/fck_editorarea.css','/css/buttons.css' ],
-                colorButton_colors: '{{ join(",", \AscentCreative\CMS\Models\Swatch::all()->transform(function($item, $key) { return str_replace('#', '', $item->hex); })->toArray()) }}',
+                colorButton_colors: '{{ join(",", \AmplifyCode\AscentCMS\Models\Swatch::all()->transform(function($item, $key) { return str_replace('#', '', $item->hex); })->toArray()) }}',
                 entities_additional: '#009'
             }   
             

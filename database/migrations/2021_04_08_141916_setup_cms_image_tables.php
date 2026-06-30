@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use AscentCreative\CMS\Models\ImageSpec;
+use AmplifyCode\AscentCMS\Models\ImageSpec;
 
 class SetupCMSImageTables extends Migration
 {

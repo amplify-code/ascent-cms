@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Bible\Rules;
+namespace AmplifyCode\AscentCMS\Bible\Rules;
 
 // use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Contracts\Validation\InvokableRule;
@@ -34,7 +34,7 @@ class ValidBibleReference implements InvokableRule
 
         try {
 
-            $brp = new \AscentCreative\CMS\Bible\BibleReferenceParser();
+            $brp = new \AmplifyCode\AscentCMS\Bible\BibleReferenceParser();
             $parsed = $brp->parseBibleRef($value);
     
         } catch (\Exception $e) {

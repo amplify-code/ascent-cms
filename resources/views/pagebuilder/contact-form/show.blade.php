@@ -1,5 +1,5 @@
 
-<form action="{{ action('AscentCreative\CMS\Controllers\ContactController@submit') }}" id="demo-form">
+<form action="{{ action('AmplifyCode\AscentCMS\Controllers\ContactController@submit') }}" id="demo-form">
 
     @csrf
     

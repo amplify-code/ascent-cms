@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\PageBuilder\ElementDescriptors;
+namespace AmplifyCode\AscentCMS\PageBuilder\ElementDescriptors;
 
 use AscentCreative\PageBuilder\ElementDescriptors\AbstractDescriptor; 
 use Illuminate\Database\Eloquent\Model;

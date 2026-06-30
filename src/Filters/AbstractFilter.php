@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Filters;
+namespace AmplifyCode\AscentCMS\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 

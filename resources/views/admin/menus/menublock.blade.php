@@ -19,9 +19,9 @@
                     <div class="dropdown-menu dropdown-menu-right" style="">
         
                         @if($item)
-                        <a class="btn btn-secondary btn-sm dropdown-item" href="{{ action([AscentCreative\CMS\Controllers\Admin\MenuItemController::class, 'create'], ['menu_id' => ($item ? $item->id : '') ]) }}">Menu Item</a>
+                        <a class="btn btn-secondary btn-sm dropdown-item" href="{{ action([AmplifyCode\AscentCMS\Controllers\Admin\MenuItemController::class, 'create'], ['menu_id' => ($item ? $item->id : '') ]) }}">Menu Item</a>
                         @endif
-                        <a class="btn btn-secondary btn-sm dropdown-item" href="{{ action([AscentCreative\CMS\Controllers\Admin\PageController::class, 'create'], ['_menuitem[menu_id]' => ($item ? $item->id : '') ]) }}">Page</a>
+                        <a class="btn btn-secondary btn-sm dropdown-item" href="{{ action([AmplifyCode\AscentCMS\Controllers\Admin\PageController::class, 'create'], ['_menuitem[menu_id]' => ($item ? $item->id : '') ]) }}">Page</a>
         
                     </div>
               </div>    
@@ -34,13 +34,13 @@
                 @php
 
                     if ($item) {
-                        $tree = \AscentCreative\CMS\Models\MenuItem::scoped(['menu_id'=>$item->id])->withDepth()->defaultOrder()->get();
+                        $tree = \AmplifyCode\AscentCMS\Models\MenuItem::scoped(['menu_id'=>$item->id])->withDepth()->defaultOrder()->get();
                     } else {
 
                         $tree = [];
 
-                        $tree = \AscentCreative\CMS\Models\Page::whereDoesntHave('menuitem')->orderBy('title')->withoutGlobalScope('published')->get();
-                      //  $tree = \AscentCreative\CMS\Models\MenuItem::scoped(['menu_id'=>$item->id])->withDepth()->defaultOrder()->get();
+                        $tree = \AmplifyCode\AscentCMS\Models\Page::whereDoesntHave('menuitem')->orderBy('title')->withoutGlobalScope('published')->get();
+                      //  $tree = \AmplifyCode\AscentCMS\Models\MenuItem::scoped(['menu_id'=>$item->id])->withDepth()->defaultOrder()->get();
                     }
 
                 @endphp
@@ -64,10 +64,10 @@
 
 
                         @php
-                            $homeid = app(AscentCreative\CMS\Settings\SiteSettings::class)->homepage_id;
+                            $homeid = app(AmplifyCode\AscentCMS\Settings\SiteSettings::class)->homepage_id;
                             $is_home = false;
                             if (
-                                ($item && $mi->linkable_type == \AscentCreative\CMS\Models\Page::class && $mi->linkable_id == $homeid) || (!$item && $mi->id == $homeid)
+                                ($item && $mi->linkable_type == \AmplifyCode\AscentCMS\Models\Page::class && $mi->linkable_id == $homeid) || (!$item && $mi->id == $homeid)
                                 ) {
                                     $is_home = true;
                                 }
@@ -86,19 +86,19 @@
 
                                 @switch($mi->linkable_type)
 
-                                    @case(\AscentCreative\CMS\Models\Page::class)
-                                        <A href="{{ action([AscentCreative\CMS\Controllers\Admin\PageController::class, 'edit'], ['page' => $mi->linkable_id]) }}">{{ $linkable->title }}</A>
+                                    @case(\AmplifyCode\AscentCMS\Models\Page::class)
+                                        <A href="{{ action([AmplifyCode\AscentCMS\Controllers\Admin\PageController::class, 'edit'], ['page' => $mi->linkable_id]) }}">{{ $linkable->title }}</A>
                                     @break
 
                                     @default
-                                        <A href="{{ action([AscentCreative\CMS\Controllers\Admin\MenuItemController::class, 'edit'], ['menuitem' => $mi->id]) }}">{{ $mi->itemTitle }}</A>
+                                        <A href="{{ action([AmplifyCode\AscentCMS\Controllers\Admin\MenuItemController::class, 'edit'], ['menuitem' => $mi->id]) }}">{{ $mi->itemTitle }}</A>
                                 
 
                                 @endswitch
 
                             @else
 
-                                <A href="{{ action([AscentCreative\CMS\Controllers\Admin\PageController::class, 'edit'], ['page' => $mi->id]) }}">{{ $mi->title }}</A>
+                                <A href="{{ action([AmplifyCode\AscentCMS\Controllers\Admin\PageController::class, 'edit'], ['page' => $mi->id]) }}">{{ $mi->title }}</A>
 
                             @endif
 
@@ -120,16 +120,16 @@
                             
                                 @switch($mi->linkable_type)
                             
-                                    @case(\AscentCreative\CMS\Models\Page::class)
-                                    {{   action([AscentCreative\CMS\Controllers\Admin\PageController::class, 'delete'], ['page' => $mi->linkable_id])  }}
+                                    @case(\AmplifyCode\AscentCMS\Models\Page::class)
+                                    {{   action([AmplifyCode\AscentCMS\Controllers\Admin\PageController::class, 'delete'], ['page' => $mi->linkable_id])  }}
                                     @break
                             
                                     @default 
-                                    {{   action([AscentCreative\CMS\Controllers\Admin\MenuItemController::class, 'delete'], ['menuitem' => $mi->id])  }}
+                                    {{   action([AmplifyCode\AscentCMS\Controllers\Admin\MenuItemController::class, 'delete'], ['menuitem' => $mi->id])  }}
                                     @endswitch
 
                                 @else
-                                    {{   action([AscentCreative\CMS\Controllers\Admin\PageController::class, 'delete'], ['page' => $mi->id])  }}
+                                    {{   action([AmplifyCode\AscentCMS\Controllers\Admin\PageController::class, 'delete'], ['page' => $mi->id])  }}
                                 @endif">[x]</A></td>
                     </tr>
                 @endforeach

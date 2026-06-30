@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Models;
+namespace AmplifyCode\AscentCMS\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,8 +9,8 @@ use Kalnoy\Nestedset\NodeTrait;
 
 use Illuminate\Support\Str;
 
-use AscentCreative\CMS\Traits\HasImages;
-use AscentCreative\CMS\Traits\HasMetadata;
+use AmplifyCode\AscentCMS\Traits\HasImages;
+use AmplifyCode\AscentCMS\Traits\HasMetadata;
 
 use Laravel\Scout\Searchable;
 

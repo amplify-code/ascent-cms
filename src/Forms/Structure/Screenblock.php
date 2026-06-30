@@ -1,5 +1,5 @@
 <?php
-namespace AscentCreative\CMS\Forms\Structure;
+namespace AmplifyCode\AscentCMS\Forms\Structure;
 
 use AscentCreative\Forms\Traits\Structural;
 use AscentCreative\Forms\Contracts\FormComponent;

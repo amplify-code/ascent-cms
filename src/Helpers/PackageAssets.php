@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Helpers;
+namespace AmplifyCode\AscentCMS\Helpers;
 
 class PackageAssets {
 

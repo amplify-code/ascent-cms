@@ -6,7 +6,7 @@ This package is designed to serve as an admin area for Laravel websites and prov
 
 If you're reading this, my guess is that the CMS is already set up on your site. If you are looking at starting to use it though:
 
-`composer require ascentcreative/cms` should install this, although you might need to add a link to the repository to your composer file. 
+`composer require amplifycode/ascent-cms` should install this, although you might need to add a link to the repository to your composer file. 
 
 `php artisan migrate` should then allow all the necessary tables to be created.
 
@@ -68,7 +68,7 @@ Taking the example of Post Model which has a `tags()` Eloquent relation pointing
 
 namespace App\Traits;
 
-use AscentCreative\CMS\Traits\Extender;
+use AmplifyCode\AscentCMS\Traits\Extender;
 use App\Models\Tag;
 use App\Models\PostTag;
 

@@ -32,7 +32,7 @@
                 showPalette: true,
                 showPaletteOnly: true,
 
-                palette: [{!! \AscentCreative\CMS\Models\Swatch::all()->transform(function($item, $key) { return $item->hex; })->prepend('transparent') !!}],
+                palette: [{!! \AmplifyCode\AscentCMS\Models\Swatch::all()->transform(function($item, $key) { return $item->hex; })->prepend('transparent') !!}],
                 
                 hideAfterPaletteSelect: true,
                 togglePaletteOnly: true

@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\StackEditor\TypeDescriptors;
+namespace AmplifyCode\AscentCMS\StackEditor\TypeDescriptors;
 
 use AscentCreative\StackEditor\TypeDescriptors\AbstractDescriptor; 
 

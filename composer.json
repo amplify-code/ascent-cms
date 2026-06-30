@@ -1,5 +1,5 @@
 {
-  "name": "ascentcreative/cms",
+  "name": "amplifycode/ascent-cms",
   "description": "Core CMS Elements",
   "type": "library",
   "authors": [
@@ -26,13 +26,13 @@
   },
   "autoload": {
     "psr-4": {
-      "AscentCreative\\CMS\\": "src"
+      "AmplifyCode\\AscentCMS\\": "src"
     }
   },
   "extra": {
     "laravel": {
         "providers": [
-            "AscentCreative\\CMS\\CMSServiceProvider"
+            "AmplifyCode\\AscentCMS\\CMSServiceProvider"
         ]
     }
   },

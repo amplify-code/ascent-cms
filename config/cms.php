@@ -20,7 +20,7 @@ return [
 
     'aliases' => [
 
-        'Page' => AscentCreative\CMS\Facades\PageFacade::class,
+        'Page' => AmplifyCode\AscentCMS\Facades\PageFacade::class,
 
     ],
 

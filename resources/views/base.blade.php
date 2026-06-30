@@ -11,7 +11,7 @@
             <meta name="robots" content="noindex,nofollow">
         @endif
 
-        <link rel="alternate icon" href="/storage/{!! AscentCreative\CMS\Models\File::find(app(AscentCreative\CMS\Settings\SiteSettings::class)->favicon)->filepath ?? '../vendor/ascent/cms/img/ascent-badge-trans.png' !!}">
+        <link rel="alternate icon" href="/storage/{!! AmplifyCode\AscentCMS\Models\File::find(app(AmplifyCode\AscentCMS\Settings\SiteSettings::class)->favicon)->filepath ?? '../vendor/ascent/cms/img/ascent-badge-trans.png' !!}">
 
         {{ metadata($model ?? null) }}
     
@@ -30,7 +30,7 @@
 
         @yield('site_head')
     
-        {!! app(AscentCreative\CMS\Settings\SiteSettings::class)->custom_head_tags !!}
+        {!! app(AmplifyCode\AscentCMS\Settings\SiteSettings::class)->custom_head_tags !!}
 
     </head>
     
@@ -38,7 +38,7 @@
     <body>
 @show
 
-        {!! app(AscentCreative\CMS\Settings\SiteSettings::class)->custom_body_tags_start !!}
+        {!! app(AmplifyCode\AscentCMS\Settings\SiteSettings::class)->custom_body_tags_start !!}
 
         @yield('site_layout')
         
@@ -83,7 +83,7 @@
             });
         </script>
 
-        {!! app(AscentCreative\CMS\Settings\SiteSettings::class)->custom_body_tags_end !!}
+        {!! app(AmplifyCode\AscentCMS\Settings\SiteSettings::class)->custom_body_tags_end !!}
 
     </body>
 </html>

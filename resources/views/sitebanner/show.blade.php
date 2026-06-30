@@ -5,7 +5,7 @@
         @endif
 
         @if($banner->image_id)
-            @php  $file = AscentCreative\CMS\Models\File::find($banner->image_id) @endphp
+            @php  $file = AmplifyCode\AscentCMS\Models\File::find($banner->image_id) @endphp
             <img src="/storage/{{ $file->filepath }}" style="width: 100%;" border="0"/>
         @endif
 

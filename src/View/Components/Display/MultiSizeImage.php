@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\View\Components\Display;
+namespace AmplifyCode\AscentCMS\View\Components\Display;
 
 use Illuminate\View\Component;
 

@@ -1,5 +1,5 @@
 <?php
-namespace AscentCreative\CMS\Forms\Subform;
+namespace AmplifyCode\AscentCMS\Forms\Subform;
 
 use AscentCreative\Forms\Structure\Subform;
 use AscentCreative\Forms\Structure\HTML;

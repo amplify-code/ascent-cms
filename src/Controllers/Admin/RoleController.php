@@ -1,8 +1,8 @@
 <?php
 
-namespace AscentCreative\CMS\Controllers\Admin;
+namespace AmplifyCode\AscentCMS\Controllers\Admin;
 
-use AscentCreative\CMS\Controllers\AdminBaseController;
+use AmplifyCode\AscentCMS\Controllers\AdminBaseController;
 
 use Illuminate\Http\Request;
 

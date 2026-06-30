@@ -12,7 +12,7 @@ return new class extends Migration
             $table->publishable();
         });
 
-        $pages = \AscentCreative\CMS\Models\Page::withoutGlobalScope('published')->update(['publishable'=>1]);
+        $pages = \AmplifyCode\AscentCMS\Models\Page::withoutGlobalScope('published')->update(['publishable'=>1]);
     }
 
     public function down()

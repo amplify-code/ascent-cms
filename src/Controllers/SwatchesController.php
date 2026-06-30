@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Controllers;
+namespace AmplifyCode\AscentCMS\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Response;
  
 use Illuminate\Database\Eloquent\Model;
 
-use AscentCreative\CMS\Models\Swatch;
+use AmplifyCode\AscentCMS\Models\Swatch;
 
 class SwatchesController extends Controller {
 

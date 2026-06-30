@@ -1,8 +1,8 @@
 <?php
 
-namespace AscentCreative\CMS\Models;
+namespace AmplifyCode\AscentCMS\Models;
 
-use AscentCreative\CMS\Traits\HasExtenders;
+use AmplifyCode\AscentCMS\Traits\HasExtenders;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

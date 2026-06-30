@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\View\Components\MultiStepForm;
+namespace AmplifyCode\AscentCMS\View\Components\MultiStepForm;
 
 use Illuminate\View\Component;
 

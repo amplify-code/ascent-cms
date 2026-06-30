@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Notifications;
+namespace AmplifyCode\AscentCMS\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -45,7 +45,7 @@ class ContactRequestNotification extends Notification
     {
         //return 
 
-        $settings = app(\AscentCreative\CMS\Settings\SiteSettings::class);
+        $settings = app(\AmplifyCode\AscentCMS\Settings\SiteSettings::class);
         
         $msg = (new MailMessage)
                     ->template('vendor.notifications.email')

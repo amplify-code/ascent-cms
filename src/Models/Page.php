@@ -1,14 +1,14 @@
 <?php
 
-namespace AscentCreative\CMS\Models;
+namespace AmplifyCode\AscentCMS\Models;
 
 
-use AscentCreative\CMS\Traits\HasHeaderImage;
-use AscentCreative\CMS\Traits\HasImages;
-use AscentCreative\CMS\Traits\HasMenuItem;
-use AscentCreative\CMS\Traits\HasMetadata;
-use AscentCreative\CMS\Traits\HasSlug;
-use AscentCreative\CMS\Traits\Publishable;
+use AmplifyCode\AscentCMS\Traits\HasHeaderImage;
+use AmplifyCode\AscentCMS\Traits\HasImages;
+use AmplifyCode\AscentCMS\Traits\HasMenuItem;
+use AmplifyCode\AscentCMS\Traits\HasMetadata;
+use AmplifyCode\AscentCMS\Traits\HasSlug;
+use AmplifyCode\AscentCMS\Traits\Publishable;
 
 
 use AscentCreative\SiteSearch\Traits\Indexable;
@@ -103,7 +103,7 @@ class Page extends Base
 
     public $sidebar_panels = [
 
-        'top' => ['AscentCreative\CMS\Sidebar\Submenu'],
+        'top' => ['AmplifyCode\AscentCMS\Sidebar\Submenu'],
         'bottom' => []
     
     ]; // Should this be alias based? Ideally. 

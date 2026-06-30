@@ -1,22 +1,22 @@
 <?php
 
-namespace AscentCreative\CMS\Controllers\Admin;
+namespace AmplifyCode\AscentCMS\Controllers\Admin;
 
-use AscentCreative\CMS\Controllers\AdminBaseController;
+use AmplifyCode\AscentCMS\Controllers\AdminBaseController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
-use AscentCreative\CMS\Admin\UI\Index\Column;
+use AmplifyCode\AscentCMS\Admin\UI\Index\Column;
 
 class UserController extends AdminBaseController
 {
 
     static $modelClass = 'App\Models\User';
-    //static $modelClass = 'AscentCreative\CMS\Models\User';
+    //static $modelClass = 'AmplifyCode\AscentCMS\Models\User';
     static $bladePath = "cms::admin.users";
-    static $formClass = 'AscentCreative\CMS\Forms\Admin\User';
+    static $formClass = 'AmplifyCode\AscentCMS\Forms\Admin\User';
 
     public $indexSearchFields = ['first_name', 'last_name', 'email'];
 

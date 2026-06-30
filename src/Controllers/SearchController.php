@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Controllers;
+namespace AmplifyCode\AscentCMS\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

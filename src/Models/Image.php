@@ -1,11 +1,11 @@
 <?php
 
-namespace AscentCreative\CMS\Models;
+namespace AmplifyCode\AscentCMS\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use AscentCreative\CMS\Models\ImageSpec;
+use AmplifyCode\AscentCMS\Models\ImageSpec;
 
 class Image extends Base
 {

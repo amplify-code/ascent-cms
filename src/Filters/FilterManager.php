@@ -1,5 +1,5 @@
 <?php
-namespace AscentCreative\CMS\Filters;
+namespace AmplifyCode\AscentCMS\Filters;
 
 class FilterManager {
 

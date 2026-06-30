@@ -3,7 +3,7 @@
 $md = $model->metadata;
 
 if(!$md && request()->_metadata) {
-    $md = new AscentCreative\CMS\Models\Metadata();
+    $md = new AmplifyCode\AscentCMS\Models\Metadata();
     $md->fill(request()->_metadata);
 }
 

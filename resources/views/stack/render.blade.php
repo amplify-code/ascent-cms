@@ -33,7 +33,7 @@
                     margin-right: {{ $item->margin->right }}px;
                 @endif @if(Agent::isMobile() && isset($item->bgimage) && $item->bgimage != '')
                     {{-- Can't use parallax on mobile, so add the image as a normal backrgound --}}
-                    background-image: url('/storage/{{ \AscentCreative\CMS\Models\File::find($item->bgimage)->filepath }}');
+                    background-image: url('/storage/{{ \AmplifyCode\AscentCMS\Models\File::find($item->bgimage)->filepath }}');
                     background-size: cover;
                     background-position: center;
                 @endif" 
@@ -41,7 +41,7 @@
                 @if(!Agent::isMobile())
                     @if(isset($item->bgimage) && $item->bgimage != '') 
                         {{-- Parallax image for non-mobile users. --}}
-                        data-android-fix="false" class="parallax-window" data-parallax="scroll" data-image-src="/storage/{{ \AscentCreative\CMS\Models\File::find($item->bgimage)->filepath }}"
+                        data-android-fix="false" class="parallax-window" data-parallax="scroll" data-image-src="/storage/{{ \AmplifyCode\AscentCMS\Models\File::find($item->bgimage)->filepath }}"
                     @endif
                 @endif         
 

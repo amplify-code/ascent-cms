@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Sidebar;
+namespace AmplifyCode\AscentCMS\Sidebar;
 
 
 class TextPanel extends AbstractPanel {

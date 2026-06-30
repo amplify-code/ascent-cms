@@ -1,10 +1,10 @@
 <?php
 
-namespace AscentCreative\CMS\Traits;
+namespace AmplifyCode\AscentCMS\Traits;
 
-use AscentCreative\CMS\Traits\Extender;
-use AscentCreative\CMS\Models\Image;
-use AscentCreative\CMS\Models\ImageSpec;
+use AmplifyCode\AscentCMS\Traits\Extender;
+use AmplifyCode\AscentCMS\Models\Image;
+use AmplifyCode\AscentCMS\Models\ImageSpec;
 
 
 use Illuminate\Http\Request;
@@ -78,7 +78,7 @@ trait HasImages {
     }
 
     public function imageSpecs() {
-        return $this->morphToMany(\AscentCreative\CMS\Models\ImageSpec::class, 'imageable', 'cms_images');
+        return $this->morphToMany(\AmplifyCode\AscentCMS\Models\ImageSpec::class, 'imageable', 'cms_images');
     }
 
 

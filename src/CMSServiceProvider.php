@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS;
+namespace AmplifyCode\AscentCMS;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
@@ -20,9 +20,9 @@ use Laravel\Scout\EngineManager;
 
 use Spatie\Activitylog\Models\Activity;
 
-use AscentCreative\CMS\Helpers\HeadTitle;
-use AscentCreative\CMS\Helpers\PackageAssets;
-use AscentCreative\CMS\Helpers\AdminMenu;
+use AmplifyCode\AscentCMS\Helpers\HeadTitle;
+use AmplifyCode\AscentCMS\Helpers\PackageAssets;
+use AmplifyCode\AscentCMS\Helpers\AdminMenu;
 
 use Jenssegers\Agent\Agent;
 
@@ -35,7 +35,7 @@ class CMSServiceProvider extends ServiceProvider
     require_once (__DIR__.'/Helpers/ascenthelpers.php');
 
 
-    $this->app->register(\AscentCreative\CMS\Providers\EventServiceProvider::class);
+    $this->app->register(\AmplifyCode\AscentCMS\Providers\EventServiceProvider::class);
 
     $this->app->register(\Jenssegers\Agent\AgentServiceProvider::class);
 
@@ -78,7 +78,7 @@ class CMSServiceProvider extends ServiceProvider
 
     // For each model:
     // 1) Set up an alias for the Facade (allows Page::method() calls)
-    $aliases['Page'] = \AscentCreative\CMS\Facades\PageFacade::class;
+    $aliases['Page'] = \AmplifyCode\AscentCMS\Facades\PageFacade::class;
 
     // 2) resolve the key in getFacadeAccessor()
     $this->app->bind('page',function(){
@@ -87,7 +87,7 @@ class CMSServiceProvider extends ServiceProvider
     });
 
     // 3) Use Interface/Implementation binding to allow TypeHinting to resolve the right class.
-    $this->app->bind(\AscentCreative\CMS\Models\Page::class, $cls = config('cms.models.page'));
+    $this->app->bind(\AmplifyCode\AscentCMS\Models\Page::class, $cls = config('cms.models.page'));
 
 
     $this->app->bind('menu',function(){
@@ -231,14 +231,14 @@ class CMSServiceProvider extends ServiceProvider
     $this->loadMigrationsFrom(__DIR__.'/../database/settings');
 
     $router = $this->app->make(Router::class);
-    $router->aliasMiddleware('cms-nocache', \AscentCreative\CMS\Middleware\NoCache::class);
+    $router->aliasMiddleware('cms-nocache', \AmplifyCode\AscentCMS\Middleware\NoCache::class);
 
     $this->commands([
-        \AscentCreative\CMS\Commands\CreateAdminUser::class,
-        \AscentCreative\CMS\Commands\ObfuscateUserData::class,
-        \AscentCreative\CMS\Commands\RefreshMultiSizeImages::class,
-        \AscentCreative\CMS\Commands\ZendImportUsers::class,
-        \AscentCreative\CMS\Commands\ReslugModel::class,
+        \AmplifyCode\AscentCMS\Commands\CreateAdminUser::class,
+        \AmplifyCode\AscentCMS\Commands\ObfuscateUserData::class,
+        \AmplifyCode\AscentCMS\Commands\RefreshMultiSizeImages::class,
+        \AmplifyCode\AscentCMS\Commands\ZendImportUsers::class,
+        \AmplifyCode\AscentCMS\Commands\ReslugModel::class,
     ]);
 
    
@@ -257,7 +257,7 @@ class CMSServiceProvider extends ServiceProvider
 
 
     resolve(EngineManager::class)->extend('ascent', function () {
-        return new \AscentCreative\CMS\Engines\AscentEngine;
+        return new \AmplifyCode\AscentCMS\Engines\AscentEngine;
     });
 
 
@@ -322,15 +322,15 @@ class CMSServiceProvider extends ServiceProvider
     
     // Log::debug('resolve menu item');
 
-    // $menuitem = \AscentCreative\CMS\Models\MenuItem::where(DB::Raw('concat(url, "%")'), 'like', '/' . request()->path())->first();
+    // $menuitem = \AmplifyCode\AscentCMS\Models\MenuItem::where(DB::Raw('concat(url, "%")'), 'like', '/' . request()->path())->first();
 
-    $menuitem = \AscentCreative\CMS\Models\MenuItem::whereRaw('"/' . request()->path() . '" like concat(url, "%")')->first(); //DB::Raw('concat(url, "%")'), 'like', '/' . request()->path())->first();
+    $menuitem = \AmplifyCode\AscentCMS\Models\MenuItem::whereRaw('"/' . request()->path() . '" like concat(url, "%")')->first(); //DB::Raw('concat(url, "%")'), 'like', '/' . request()->path())->first();
 
     // dd($menuitem);
 
-    // $menuitem = \AscentCreative\CMS\Models\MenuItem::where('url', '/' . request()->path())->first();
+    // $menuitem = \AmplifyCode\AscentCMS\Models\MenuItem::where('url', '/' . request()->path())->first();
     
-    // dd(\AscentCreative\CMS\Models\MenuItem::where('url', '/' . request()->path())->first());
+    // dd(\AmplifyCode\AscentCMS\Models\MenuItem::where('url', '/' . request()->path())->first());
 
     // Log::debug('end resolve');
 
@@ -353,11 +353,11 @@ class CMSServiceProvider extends ServiceProvider
         // return content in Json responses.
         $this->app->singleton(
             \Laravel\Fortify\Http\Controllers\ProfileInformationController::class, 
-            \AscentCreative\CMS\Fortify\Controllers\ProfileInformationController::class);
+            \AmplifyCode\AscentCMS\Fortify\Controllers\ProfileInformationController::class);
 
         $this->app->singleton(
             \Laravel\Fortify\Http\Controllers\PasswordController::class, 
-            \AscentCreative\CMS\Fortify\Controllers\PasswordController::class);
+            \AmplifyCode\AscentCMS\Fortify\Controllers\PasswordController::class);
 
         // register new LoginResponse
         $this->app->singleton(
@@ -419,39 +419,39 @@ class CMSServiceProvider extends ServiceProvider
   // register the components
   public function bootComponents() {
 
-    Blade::component('cms-multistepform', 'AscentCreative\CMS\View\Components\MultiStepForm');
-    Blade::component('cms-multistepform-step', 'AscentCreative\CMS\View\Components\MultiStepForm\FormStep');
+    Blade::component('cms-multistepform', 'AmplifyCode\AscentCMS\View\Components\MultiStepForm');
+    Blade::component('cms-multistepform-step', 'AmplifyCode\AscentCMS\View\Components\MultiStepForm\FormStep');
 
-    Blade::component('cms-multisizeimage', 'AscentCreative\CMS\View\Components\Display\MultiSizeImage');
+    Blade::component('cms-multisizeimage', 'AmplifyCode\AscentCMS\View\Components\Display\MultiSizeImage');
 
-    Blade::component('cms-forms-structure-screenblock', 'AscentCreative\CMS\View\Components\Forms\Structure\Screenblock');
+    Blade::component('cms-forms-structure-screenblock', 'AmplifyCode\AscentCMS\View\Components\Forms\Structure\Screenblock');
 
 
     //** Old - being phased out */
     
-    Blade::component('cms-form-datetime', 'AscentCreative\CMS\View\Components\Form\DateTime');
-    Blade::component('cms-form-statictext', 'AscentCreative\CMS\View\Components\Form\StaticText');
+    Blade::component('cms-form-datetime', 'AmplifyCode\AscentCMS\View\Components\Form\DateTime');
+    Blade::component('cms-form-statictext', 'AmplifyCode\AscentCMS\View\Components\Form\StaticText');
   
-    Blade::component('cms-form-ckeditor', 'AscentCreative\CMS\View\Components\Form\CKEditor');
-    Blade::component('cms-form-autocomplete', 'AscentCreative\CMS\View\Components\Form\Autocomplete');
+    Blade::component('cms-form-ckeditor', 'AmplifyCode\AscentCMS\View\Components\Form\CKEditor');
+    Blade::component('cms-form-autocomplete', 'AmplifyCode\AscentCMS\View\Components\Form\Autocomplete');
     
-    Blade::component('cms-form-relatedtokens', 'AscentCreative\CMS\View\Components\Form\RelatedTokens');
+    Blade::component('cms-form-relatedtokens', 'AmplifyCode\AscentCMS\View\Components\Form\RelatedTokens');
     
-    Blade::component('cms-form-biblereflist', 'AscentCreative\CMS\View\Components\Form\BibleRefList');
+    Blade::component('cms-form-biblereflist', 'AmplifyCode\AscentCMS\View\Components\Form\BibleRefList');
 
-    Blade::component('cms-form-menuposition', 'AscentCreative\CMS\View\Components\Form\MenuPosition');
-    Blade::component('cms-form-nestedset', 'AscentCreative\CMS\View\Components\Form\NestedSet');
+    Blade::component('cms-form-menuposition', 'AmplifyCode\AscentCMS\View\Components\Form\MenuPosition');
+    Blade::component('cms-form-nestedset', 'AmplifyCode\AscentCMS\View\Components\Form\NestedSet');
 
     
-    Blade::component('cms-form-videoembed', 'AscentCreative\CMS\View\Components\Form\VideoEmbed');
+    Blade::component('cms-form-videoembed', 'AmplifyCode\AscentCMS\View\Components\Form\VideoEmbed');
 
 
-    Blade::component('cms-form-stack', 'AscentCreative\CMS\View\Components\Form\Stack');
-    Blade::component('cms-form-stackblock', 'AscentCreative\CMS\View\Components\Form\StackBlock');
-    Blade::component('cms-form-stackblock-rowitem', 'AscentCreative\CMS\View\Components\Form\StackBlock\RowItem');
+    Blade::component('cms-form-stack', 'AmplifyCode\AscentCMS\View\Components\Form\Stack');
+    Blade::component('cms-form-stackblock', 'AmplifyCode\AscentCMS\View\Components\Form\StackBlock');
+    Blade::component('cms-form-stackblock-rowitem', 'AmplifyCode\AscentCMS\View\Components\Form\StackBlock\RowItem');
 
-    Blade::component('cms-modal', 'AscentCreative\CMS\View\Components\Modal');
-    Blade::component('cms-toast', 'AscentCreative\CMS\View\Components\Toast');
+    Blade::component('cms-modal', 'AmplifyCode\AscentCMS\View\Components\Modal');
+    Blade::component('cms-toast', 'AmplifyCode\AscentCMS\View\Components\Toast');
 
   }
 

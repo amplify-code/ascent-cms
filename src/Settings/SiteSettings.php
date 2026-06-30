@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Settings;
+namespace AmplifyCode\AscentCMS\Settings;
 
 use Spatie\LaravelSettings\Settings;
 

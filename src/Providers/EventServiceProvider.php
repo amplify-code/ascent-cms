@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Providers;
+namespace AmplifyCode\AscentCMS\Providers;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Events\Login;
@@ -11,10 +11,10 @@ class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
         Registered::class => [
-            \AscentCreative\CMS\Listeners\SendWelcomeEmail::class,
+            \AmplifyCode\AscentCMS\Listeners\SendWelcomeEmail::class,
         ],
         Login::class => [
-            \AscentCreative\CMS\Listeners\LogLogin::class,
+            \AmplifyCode\AscentCMS\Listeners\LogLogin::class,
         ],
     ];
 

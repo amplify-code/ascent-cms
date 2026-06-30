@@ -1,9 +1,9 @@
 @php
 
     if (is_array($model->image_specs) && count($model->image_specs) > 0) {
-        $specs = AscentCreative\CMS\Models\ImageSpec::whereIn('slug', $model->image_specs)->get();
+        $specs = AmplifyCode\AscentCMS\Models\ImageSpec::whereIn('slug', $model->image_specs)->get();
     } else {
-        $specs = AscentCreative\CMS\Models\ImageSpec::all();
+        $specs = AmplifyCode\AscentCMS\Models\ImageSpec::all();
     }
 
     // maybe, rather than defining on the model, we do this in the CMS config - use an array of model classes and the assoociated specs?

@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Util;
+namespace AmplifyCode\AscentCMS\Util;
 
 class SplitAndRound {
    

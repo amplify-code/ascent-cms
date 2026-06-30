@@ -1,6 +1,6 @@
 <?php 
 
-namespace AscentCreative\CMS\Traits;
+namespace AmplifyCode\AscentCMS\Traits;
 
 trait Extender {
 
@@ -70,7 +70,7 @@ trait Extender {
     public function addModelTraitsToForm($form) {
 
         foreach(class_uses($this) as $trait) {
-            if (array_search('AscentCreative\CMS\Traits\Extender', class_uses($trait)) !== false) {
+            if (array_search('AmplifyCode\AscentCMS\Traits\Extender', class_uses($trait)) !== false) {
                 $fn = $this->getTraitFunction('adjustFormFor', $trait);
                 if(method_exists($this, $fn)) {
                     $this->$fn($form);
@@ -258,7 +258,7 @@ trait Extender {
             $blades = array();
             foreach(class_uses($this) as $trait) {
 
-                if (array_search('AscentCreative\CMS\Traits\Extender', class_uses($trait)) !== false) {
+                if (array_search('AmplifyCode\AscentCMS\Traits\Extender', class_uses($trait)) !== false) {
 
 
                     $ary = explode('\\', $trait);

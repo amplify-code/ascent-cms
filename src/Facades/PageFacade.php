@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Facades;
+namespace AmplifyCode\AscentCMS\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

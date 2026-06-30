@@ -5,7 +5,7 @@
     $template = $model->template;
 
     if(!$template) {
-        $template = \AscentCreative\CMS\Models\BlockTemplate::find(request()->blocktemplate_id);
+        $template = \AmplifyCode\AscentCMS\Models\BlockTemplate::find(request()->blocktemplate_id);
     }
 
 @endphp
@@ -85,7 +85,7 @@
 {{-- 
 
     <x-cms-form-foreignkeyselect type="select" name="context_id" label="Attach to:" 
-        model="AscentCreative\CMS\Models\MenuItem" :query="AscentCreative\CMS\Models\MenuItem::scoped( ['menu_id' => 1] )->orderBy('_lft')" value="{{ old('context_id', $model->context_id) }}">
+        model="AmplifyCode\AscentCMS\Models\MenuItem" :query="AmplifyCode\AscentCMS\Models\MenuItem::scoped( ['menu_id' => 1] )->orderBy('_lft')" value="{{ old('context_id', $model->context_id) }}">
     </x-cms-form-foreignkeyselect>
 
     <select name="context_type">

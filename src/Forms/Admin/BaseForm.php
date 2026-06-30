@@ -1,10 +1,10 @@
 <?php
-namespace AscentCreative\CMS\Forms\Admin;
+namespace AmplifyCode\AscentCMS\Forms\Admin;
 
 use AscentCreative\Forms\Form;
 use AscentCreative\Forms\Fields\Input;
 use AscentCreative\Forms\Fields\ForeignKeySelect;
-use AscentCreative\CMS\Forms\Structure\Screenblock;
+use AmplifyCode\AscentCMS\Forms\Structure\Screenblock;
 
 class BaseForm extends Form {
 

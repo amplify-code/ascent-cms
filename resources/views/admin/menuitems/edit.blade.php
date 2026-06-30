@@ -25,9 +25,9 @@
     relationshipFieldName="context_type"
     relationFieldName="context_id"
     relationLabel="itemTitle"
-    :scopeData="AscentCreative\CMS\Models\Menu::query()"
+    :scopeData="AmplifyCode\AscentCMS\Models\Menu::query()"
     scopeKey="menu_id"
-    :nestedSetData="AscentCreative\CMS\Models\MenuItem::query()"
+    :nestedSetData="AmplifyCode\AscentCMS\Models\MenuItem::query()"
 
     scopeValue="{{ old('menu_id', $model->menu_id ?? request()->menu_id ) }}"
     relationshipValue="{{ old('context_type', $model->context['position'] ) }}"
@@ -47,7 +47,7 @@
 {{-- 
 
     <x-cms-form-foreignkeyselect type="select" name="context_id" label="Attach to:" 
-        model="AscentCreative\CMS\Models\MenuItem" :query="AscentCreative\CMS\Models\MenuItem::scoped( ['menu_id' => 1] )->orderBy('_lft')" value="{{ old('context_id', $model->context_id) }}">
+        model="AmplifyCode\AscentCMS\Models\MenuItem" :query="AmplifyCode\AscentCMS\Models\MenuItem::scoped( ['menu_id' => 1] )->orderBy('_lft')" value="{{ old('context_id', $model->context_id) }}">
     </x-cms-form-foreignkeyselect>
 
     <select name="context_type">

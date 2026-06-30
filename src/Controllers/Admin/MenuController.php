@@ -1,8 +1,8 @@
 <?php
 
-namespace AscentCreative\CMS\Controllers\Admin;
+namespace AmplifyCode\AscentCMS\Controllers\Admin;
 
-use AscentCreative\CMS\Controllers\AdminBaseController;
+use AmplifyCode\AscentCMS\Controllers\AdminBaseController;
 
 use Illuminate\Http\Request;
 
@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class MenuController extends AdminBaseController
 {
 
-    static $modelClass = 'AscentCreative\CMS\Models\Menu';
+    static $modelClass = 'AmplifyCode\AscentCMS\Models\Menu';
     static $bladePath = "cms::admin.menus";
 
     public $modelNameHuman = "";

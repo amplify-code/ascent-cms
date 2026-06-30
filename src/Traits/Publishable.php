@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Traits;
+namespace AmplifyCode\AscentCMS\Traits;
 
 
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 use Carbon\Carbon;
 
-use AscentCreative\CMS\Traits\Extender;
+use AmplifyCode\AscentCMS\Traits\Extender;
 
 /**
  * Reusable trait to specifiy publishing properties for a model

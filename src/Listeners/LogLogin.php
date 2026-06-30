@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Listeners;
+namespace AmplifyCode\AscentCMS\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -8,7 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 
 use Spatie\Activitylog\Models\Activity;
 
-use AscentCreative\CMS\Notifications\WelcomeEmailNotification;
+use AmplifyCode\AscentCMS\Notifications\WelcomeEmailNotification;
 
 class LogLogin
 {

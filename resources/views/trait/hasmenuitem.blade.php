@@ -3,7 +3,7 @@
 $mi = $model->menuitem;
 
 if(!$mi && request()->_menuitem) {
-    $mi = new AscentCreative\CMS\Models\MenuItem();
+    $mi = new AmplifyCode\AscentCMS\Models\MenuItem();
     $mi->fill(request()->_menuitem);
 }
 
@@ -19,9 +19,9 @@ if(!$mi && request()->_menuitem) {
     relationshipFieldName="_menuitem[context_type]"
     relationFieldName="_menuitem[context_id]"
     relationLabel="itemTitle"
-    :scopeData="AscentCreative\CMS\Models\Menu::query()"
+    :scopeData="AmplifyCode\AscentCMS\Models\Menu::query()"
     scopeKey="menu_id"
-    :nestedSetData="AscentCreative\CMS\Models\MenuItem::query()"
+    :nestedSetData="AmplifyCode\AscentCMS\Models\MenuItem::query()"
 
     scopeValue="{{ old('_menuitem.menu_id', $mi->menu_id ?? '') }}"
     relationshipValue="{{ old('_menuitem.context_type', $mi ? $mi->context['position'] : '' ) }}"

@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Middleware;
+namespace AmplifyCode\AscentCMS\Middleware;
 
 use Closure;
 use Illuminate\Http\Response;

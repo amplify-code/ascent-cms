@@ -1,8 +1,8 @@
 <?php
 
-namespace AscentCreative\CMS\Bible;
+namespace AmplifyCode\AscentCMS\Bible;
 
-use AscentCreative\CMS\Bible\Exceptions\BibleReferenceParserException;
+use AmplifyCode\AscentCMS\Bible\Exceptions\BibleReferenceParserException;
 
 class BibleReferenceParser {
 

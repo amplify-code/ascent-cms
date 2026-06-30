@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Notifications;
+namespace AmplifyCode\AscentCMS\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 
 use Illuminate\Support\HtmlString;
 
-use AscentCreative\CMS\Settings\SiteSettings;
+use AmplifyCode\AscentCMS\Settings\SiteSettings;
 
 class WelcomeEmailNotification extends Notification
 {

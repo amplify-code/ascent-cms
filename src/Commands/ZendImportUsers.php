@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Commands;
+namespace AmplifyCode\AscentCMS\Commands;
 
 use Illuminate\Console\Command;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace AscentCreative\CMS\Controllers\Admin;
+namespace AmplifyCode\AscentCMS\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
 
-use AscentCreative\CMS\Settings\SiteSettings;
+use AmplifyCode\AscentCMS\Settings\SiteSettings;
 
 use Illuminate\Http\Request;
 

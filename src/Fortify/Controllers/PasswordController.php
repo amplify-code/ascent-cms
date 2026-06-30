@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Fortify\Controllers;
+namespace AmplifyCode\AscentCMS\Fortify\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

@@ -51,11 +51,11 @@
             //$opts = $model::orderBy($labelField)->get(); 
         //   $opts = $query->orderBy($labelField)->get();
             
-            // $menus = AscentCreative\CMS\Models\Menu::all();
+            // $menus = AmplifyCode\AscentCMS\Models\Menu::all();
 
             // foreach($menus as $menu) {
 
-            // $opts = AscentCreative\CMS\Models\MenuItem::scoped([ 'menu_id' => $menu->id ])->withDepth()->orderBy('menu_id')->orderBy('_lft')->get();
+            // $opts = AmplifyCode\AscentCMS\Models\MenuItem::scoped([ 'menu_id' => $menu->id ])->withDepth()->orderBy('menu_id')->orderBy('_lft')->get();
 
             ?>
 

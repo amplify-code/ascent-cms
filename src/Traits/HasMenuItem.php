@@ -1,9 +1,9 @@
 <?php
 
-namespace AscentCreative\CMS\Traits;
+namespace AmplifyCode\AscentCMS\Traits;
 
-use AscentCreative\CMS\Traits\BaseTrait;
-use AscentCreative\CMS\Models\MenuItem;
+use AmplifyCode\AscentCMS\Traits\BaseTrait;
+use AmplifyCode\AscentCMS\Models\MenuItem;
 
 use Illuminate\Http\Request;
 

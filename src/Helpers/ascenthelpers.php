@@ -127,7 +127,7 @@ function imageUrl($spec, $models) {
     foreach($models as $model) {
 
         if(!is_null($model)) {
-            $hi = \AscentCreative\CMS\Models\Image::getSpecForModel($model, $spec);
+            $hi = \AmplifyCode\AscentCMS\Models\Image::getSpecForModel($model, $spec);
             if($hi) {
                 return $hi->image;
             }
@@ -172,11 +172,11 @@ function nameToId($name) {
 /* Singleton Accessors */
 
 function headTitle() {
-	return app(\AscentCreative\CMS\Helpers\HeadTitle::class);
+	return app(\AmplifyCode\AscentCMS\Helpers\HeadTitle::class);
 }
 
 function packageAssets() {
-	return app(\AscentCreative\CMS\Helpers\PackageAssets::class);
+	return app(\AmplifyCode\AscentCMS\Helpers\PackageAssets::class);
 }
 
 function metadata($model=null) {
@@ -185,12 +185,12 @@ function metadata($model=null) {
 
 
 function adminMenu() {
-	return app(\AscentCreative\CMS\Helpers\AdminMenu::class);
+	return app(\AmplifyCode\AscentCMS\Helpers\AdminMenu::class);
 }
 
 function menu($slug, $maxDepth=0, $classes='') {
 
-    $menu = AscentCreative\CMS\Models\Menu::where('slug', $slug)->first();
+    $menu = AmplifyCode\AscentCMS\Models\Menu::where('slug', $slug)->first();
 
     if (!$menu) {
         return '';
@@ -216,7 +216,7 @@ function socials() : string {
 
 function sitebanner($max=1) {
 
-    $banner = AscentCreative\CMS\Models\SiteBanner::live()->orderBy('start_date', 'DESC')->first();
+    $banner = AmplifyCode\AscentCMS\Models\SiteBanner::live()->orderBy('start_date', 'DESC')->first();
 
     if (!$banner) {
         return '';
@@ -228,7 +228,7 @@ function sitebanner($max=1) {
 
 function contentstack($stackName) { 
  
-    $stack = AscentCreative\CMS\Models\Stack::where('name', $stackName)->first();
+    $stack = AmplifyCode\AscentCMS\Models\Stack::where('name', $stackName)->first();
 
     if ($stack) {
         return view('cms::contentstack', ['stack'=>$stack]);

@@ -1,20 +1,20 @@
 <?php
 
-namespace AscentCreative\CMS\Controllers\Admin;
+namespace AmplifyCode\AscentCMS\Controllers\Admin;
 
-use AscentCreative\CMS\Controllers\AdminBaseController;
+use AmplifyCode\AscentCMS\Controllers\AdminBaseController;
 
 use Illuminate\Http\Request;
 
 use Illuminate\Database\Eloquent\Model;
 
-use AscentCreative\CMS\Models\Stack;
-use AscentCreative\CMS\Models\Block;
+use AmplifyCode\AscentCMS\Models\Stack;
+use AmplifyCode\AscentCMS\Models\Block;
 
 class StackController extends AdminBaseController
 {
 
-    static $modelClass = 'AscentCreative\CMS\Models\Stack';
+    static $modelClass = 'AmplifyCode\AscentCMS\Models\Stack';
     static $bladePath = "cms::admin.stacks";
 
 

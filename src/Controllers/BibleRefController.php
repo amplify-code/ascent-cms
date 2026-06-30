@@ -1,14 +1,14 @@
 <?php
 
-namespace AscentCreative\CMS\Controllers;
+namespace AmplifyCode\AscentCMS\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
  
 use Illuminate\Database\Eloquent\Model;
 
-use AscentCreative\CMS\Bible\BibleReferenceParser;
-use AscentCreative\CMS\Bible\Excpetions\BibleReferenceParserException;
+use AmplifyCode\AscentCMS\Bible\BibleReferenceParser;
+use AmplifyCode\AscentCMS\Bible\Excpetions\BibleReferenceParserException;
 
 class BibleRefController extends Controller
 {

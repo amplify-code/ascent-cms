@@ -1,4 +1,4 @@
-@foreach( app(AscentCreative\CMS\Settings\SiteSettings::class)->social_accounts as $account)
+@foreach( app(AmplifyCode\AscentCMS\Settings\SiteSettings::class)->social_accounts as $account)
 
     @if($account['platform'] != null && $account['link'] != null)
 

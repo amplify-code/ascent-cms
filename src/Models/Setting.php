@@ -1,10 +1,10 @@
 <?php
 
-namespace AscentCreative\CMS\Models;
+namespace AmplifyCode\AscentCMS\Models;
 
 
-use AscentCreative\CMS\Traits\HasHeaderImage;
-use AscentCreative\CMS\Traits\HasMenuItem;
+use AmplifyCode\AscentCMS\Traits\HasHeaderImage;
+use AmplifyCode\AscentCMS\Traits\HasMenuItem;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

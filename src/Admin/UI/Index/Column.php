@@ -1,5 +1,5 @@
 <?php
-namespace AscentCreative\CMS\Admin\UI\Index;
+namespace AmplifyCode\AscentCMS\Admin\UI\Index;
 
 class Column {
 

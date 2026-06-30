@@ -5,11 +5,11 @@ Route::prefix('admin')->middleware(['web', 'auth', 'can:administer'])->group(fun
 
     Route::get('/users/autocomplete', [config('cms.models.user-controller'), 'autocomplete']);
     Route::get('/users/{user}/delete', [config('cms.models.user-controller'), 'delete']);
-    Route::resource('/users', config('cms.models.user-controller')); //AscentCreative\CMS\Facades\UserController::class);
+    Route::resource('/users', config('cms.models.user-controller')); //AmplifyCode\AscentCMS\Facades\UserController::class);
 
 });
 
-Route::middleware(['web'])->namespace('AscentCreative\CMS\Controllers')->group(function () {
+Route::middleware(['web'])->namespace('AmplifyCode\AscentCMS\Controllers')->group(function () {
 
 
     Route::get('logintest', function() {
@@ -43,10 +43,10 @@ Route::middleware(['web'])->namespace('AscentCreative\CMS\Controllers')->group(f
 
         // get 'homepage' and render it.
 
-        $page_id = app(AscentCreative\CMS\Settings\SiteSettings::class)->homepage_id;
-        $page = \AscentCreative\CMS\Models\Page::find($page_id); // <- the page flagged as homepage.
+        $page_id = app(AmplifyCode\AscentCMS\Settings\SiteSettings::class)->homepage_id;
+        $page = \AmplifyCode\AscentCMS\Models\Page::find($page_id); // <- the page flagged as homepage.
         if($page) {
-            return app()->make(\AscentCreative\CMS\Controllers\PageController::class)->show($page);
+            return app()->make(\AmplifyCode\AscentCMS\Controllers\PageController::class)->show($page);
         } else {
             return view('welcome');
         }
@@ -63,10 +63,10 @@ Route::middleware(['web'])->namespace('AscentCreative\CMS\Controllers')->group(f
     Route::get('/contact/submit', 'ContactController@submit');
     Route::get('/contact/confirm', function() {
 
-        $page_id = app(AscentCreative\CMS\Settings\SiteSettings::class)->contact_confirm_page_id;
-        $page = \AscentCreative\CMS\Models\Page::find($page_id); // <- the page flagged as homepage.
+        $page_id = app(AmplifyCode\AscentCMS\Settings\SiteSettings::class)->contact_confirm_page_id;
+        $page = \AmplifyCode\AscentCMS\Models\Page::find($page_id); // <- the page flagged as homepage.
         if($page) {
-            return app()->make(\AscentCreative\CMS\Controllers\PageController::class)->show($page);
+            return app()->make(\AmplifyCode\AscentCMS\Controllers\PageController::class)->show($page);
         } else {
             return view('cms::public.contact.showconfirm');
         }
@@ -95,9 +95,9 @@ Route::middleware(['web'])->namespace('AscentCreative\CMS\Controllers')->group(f
 
             // Create an in-memory copy of the model using the POSTed/PUTed data
             // (Currently hardcoded to Page, but need to somehow detect the desired model and target controller / view)
-            $page = new AscentCreative\CMS\Models\Page();
+            $page = new AmplifyCode\AscentCMS\Models\Page();
             $page->fill(request()->all());
-            $contr = App::make('AscentCreative\CMS\Controllers\PageController');
+            $contr = App::make('AmplifyCode\AscentCMS\Controllers\PageController');
             return $contr->show($page, true);
 
 
@@ -122,33 +122,33 @@ Route::middleware(['web'])->namespace('AscentCreative\CMS\Controllers')->group(f
 
        
       
-        Route::get('/settings', [AscentCreative\CMS\Controllers\Admin\SettingsController::class, 'edit'])->middleware('can:change-settings');
-        Route::post('/settings', [AscentCreative\CMS\Controllers\Admin\SettingsController::class, 'store'])->middleware('can:change-settings');
+        Route::get('/settings', [AmplifyCode\AscentCMS\Controllers\Admin\SettingsController::class, 'edit'])->middleware('can:change-settings');
+        Route::post('/settings', [AmplifyCode\AscentCMS\Controllers\Admin\SettingsController::class, 'store'])->middleware('can:change-settings');
       
-        Route::get('/menuitems/{menuitem}/delete', [AscentCreative\CMS\Controllers\Admin\MenuItemController::class, 'delete']);
+        Route::get('/menuitems/{menuitem}/delete', [AmplifyCode\AscentCMS\Controllers\Admin\MenuItemController::class, 'delete']);
         Route::resource('/menuitems', MenuItemController::class);
 
-        Route::get('/pages/{page}/delete', [AscentCreative\CMS\Controllers\Admin\PageController::class, 'delete']);
+        Route::get('/pages/{page}/delete', [AmplifyCode\AscentCMS\Controllers\Admin\PageController::class, 'delete']);
         Route::resource('/pages', PageController::class);
        
        
 
-        Route::get('/roles/{role}/delete', [AscentCreative\CMS\Controllers\Admin\RoleController::class, 'delete']);
+        Route::get('/roles/{role}/delete', [AmplifyCode\AscentCMS\Controllers\Admin\RoleController::class, 'delete']);
         Route::resource('/roles', RoleController::class);
 
-        Route::get('/permissions/{permission}/delete', [AscentCreative\CMS\Controllers\Admin\PermissionController::class, 'delete']);
+        Route::get('/permissions/{permission}/delete', [AmplifyCode\AscentCMS\Controllers\Admin\PermissionController::class, 'delete']);
         Route::resource('/permissions', PermissionController::class);
 
 
-        Route::get('/stacks/{stack}/delete', [AscentCreative\CMS\Controllers\Admin\StackController::class, 'delete']);
+        Route::get('/stacks/{stack}/delete', [AmplifyCode\AscentCMS\Controllers\Admin\StackController::class, 'delete']);
         Route::resource('/stacks', StackController::class);
-        Route::post('/stacks/updateblockorder', [AscentCreative\CMS\Controllers\Admin\StackController::class, 'updateblockorder']);
+        Route::post('/stacks/updateblockorder', [AmplifyCode\AscentCMS\Controllers\Admin\StackController::class, 'updateblockorder']);
         
 
-        Route::get('/blocks/{block}/delete', [AscentCreative\CMS\Controllers\Admin\BlockController::class, 'delete']);
+        Route::get('/blocks/{block}/delete', [AmplifyCode\AscentCMS\Controllers\Admin\BlockController::class, 'delete']);
         Route::resource('/blocks', BlockController::class);
 
-        Route::get('/sitebanners/{sitebanner}/delete', [AscentCreative\CMS\Controllers\Admin\SiteBannerController::class, 'delete']);
+        Route::get('/sitebanners/{sitebanner}/delete', [AmplifyCode\AscentCMS\Controllers\Admin\SiteBannerController::class, 'delete']);
         Route::resource('/sitebanners', SiteBannerController::class);
 
         Route::get('/savefilters', function() { 
@@ -192,7 +192,7 @@ Route::middleware(['web'])->namespace('AscentCreative\CMS\Controllers')->group(f
 
     Route::prefix('cms')->group(function() {
 
-        Route::get('/bibleref/parse/{term}', [AscentCreative\CMS\Controllers\BibleRefController::class, 'parse']);
+        Route::get('/bibleref/parse/{term}', [AmplifyCode\AscentCMS\Controllers\BibleRefController::class, 'parse']);
 
         Route::post('/video-embed/render', function() {
             return embedVideo(request()->url);
@@ -332,7 +332,7 @@ Route::middleware(['web'])->namespace('AscentCreative\CMS\Controllers')->group(f
             $filepath = Storage::disk($disk)->putFile($path, $payload);
         }
         
-        $file = new AscentCreative\CMS\Models\File();
+        $file = new AmplifyCode\AscentCMS\Models\File();
         $file->disk = $disk;
         $file->filepath = $filepath;
         $file->original_name = $sanitise; //$payload->getClientOriginalName();
@@ -382,7 +382,7 @@ Route::middleware(['web'])->namespace('AscentCreative\CMS\Controllers')->group(f
     })->name('msf.validate');
 
 
-    Route::get('/cms/swatches.css', [AscentCreative\CMS\Controllers\SwatchesController::class, 'css']);
+    Route::get('/cms/swatches.css', [AmplifyCode\AscentCMS\Controllers\SwatchesController::class, 'css']);
     
 
 });
@@ -396,7 +396,7 @@ Route::middleware(['web'])->namespace('AscentCreative\CMS\Controllers')->group(f
 
 // Route::get('/cms/welcomeemail/{order}', function (\App\Models\User $user) {
 
-//     $mail = new AscentCreative\CMS\Notifications\WelcomeEmailNotification($user);
+//     $mail = new AmplifyCode\AscentCMS\Notifications\WelcomeEmailNotification($user);
 //     return $mail->toMail('a@b.com');
 
 // });
@@ -404,7 +404,7 @@ Route::middleware(['web'])->namespace('AscentCreative\CMS\Controllers')->group(f
 /**
  * for pathless page routing, put this line at teh end of the App's web.php
  * 
- * Route::get('/{page:slug}', [AscentCreative\CMS\Controllers\PageController::class, 'show']);
+ * Route::get('/{page:slug}', [AmplifyCode\AscentCMS\Controllers\PageController::class, 'show']);
  * 
  */
 

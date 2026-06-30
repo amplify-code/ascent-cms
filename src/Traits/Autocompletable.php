@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Traits;
+namespace AmplifyCode\AscentCMS\Traits;
 
 
 use Illuminate\Http\Request;

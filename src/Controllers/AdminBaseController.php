@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\Controllers;
+namespace AmplifyCode\AscentCMS\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,8 +9,8 @@ use Illuminate\Support\Str;
 
 use Illuminate\Support\Facades\Validator;
 
-use AscentCreative\CMS\Admin\UI\Index\Column;
-use AscentCreative\CMS\Filters\FilterManager;
+use AmplifyCode\AscentCMS\Admin\UI\Index\Column;
+use AmplifyCode\AscentCMS\Filters\FilterManager;
  
 use Illuminate\Database\Eloquent\Model;
 
@@ -347,7 +347,7 @@ abstract class AdminBaseController extends Controller
 
             $addTraits = false;
             foreach(class_uses($model) as $trait) {
-                if (array_search('AscentCreative\CMS\Traits\Extender', class_uses($trait)) !== false) {
+                if (array_search('AmplifyCode\AscentCMS\Traits\Extender', class_uses($trait)) !== false) {
                     $addTraits = true;
                 }
             }

@@ -19,7 +19,7 @@
                     
                     @if($value) 
                         @php
-                            $file = AscentCreative\CMS\Models\File::find($value);
+                            $file = AmplifyCode\AscentCMS\Models\File::find($value);
                         @endphp
                         {{ $file->original_name }}
                     @else

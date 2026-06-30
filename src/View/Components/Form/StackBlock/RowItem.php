@@ -1,6 +1,6 @@
 <?php
 
-namespace AscentCreative\CMS\View\Components\Form\StackBlock;
+namespace AmplifyCode\AscentCMS\View\Components\Form\StackBlock;
 
 use Illuminate\View\Component;
 
