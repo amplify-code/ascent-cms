@@ -155,11 +155,7 @@ Route::middleware(['web'])->namespace('AscentCreative\CMS\Controllers')->group(f
             return view('cms::admin.savedfilters.modal.create'); //->with('batches', $batches );
         })->name('savefilters');
 
-        Route::resource('savedfilters', SavedFiltersController::class, [
-            'names' => [
-                'store' => 'savedfilters.create',
-            ]
-        ]);
+        Route::resource('savedfilters', SavedFiltersController::class);
 
 
 

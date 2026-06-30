@@ -15,7 +15,7 @@ Save Filters
 
 @section('modalContent')
 
-        <form action="{{ route('savedfilters.create') }}" data-onsuccess="refresh" class="xno-ajax" method="post" enctype="multipart/form-data">
+        <form action="{{ route('savedfilters.store') }}" data-onsuccess="refresh" class="xno-ajax" method="post" enctype="multipart/form-data">
 
             {{ csrf_field() }}  
 
