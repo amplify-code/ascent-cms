@@ -309,7 +309,7 @@ Route::middleware(['web'])->namespace('AscentCreative\CMS\Controllers')->group(f
             // need to be able to specify which package holds the relevant view.
             return view($pkg . 'components.hasmany.' . $target . '.item', ['item' => $obj, 'name' => $fieldname . '[' . request()->idx . ']', 'idx' => request()->idx]);
 
-        })->middleware('auth')->name('cms.components.hasmany');
+        })->middleware('auth')->name('cms.components.hasmany.store');
 
 
 
