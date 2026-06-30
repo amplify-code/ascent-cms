@@ -16,6 +16,8 @@ class Menu extends Base
 {
     use HasFactory;
 
+    public $fillable = ['title'];
+
     /*
      * MUTATORS
      * 
@@ -35,6 +37,61 @@ class Menu extends Base
             $this->attributes['slug'] = $count ? "{$slug}-{$count}" : $slug;
 
         }
+
+    }
+
+
+
+    /**
+     * Render out the menu items (UL)
+     */
+    public function render($maxDepth = 0, $classes='') {
+
+        $items = MenuItem::scoped(['menu_id'=>$this->id])->defaultOrder()
+                        ->get()->toTree();
+
+        return $this->traverse($items, $maxDepth, 0, $classes);
+
+    }
+
+    public function traverse($items, $maxDepth, $depth = 0, $classes='') {
+
+        if ($maxDepth != 0 && $depth == $maxDepth) {
+            return '';
+        }
+
+
+        $out = '<UL class="menu ' . ($depth==0?('menu-' . $this->slug):'') . ' ' . $classes . '">';
+
+        foreach($items as $item) {
+
+            $newwin = '';
+            if ($item->newWindow == 1) {
+                $newwin = ' target="_blank"';
+            }
+
+            $url = $item->itemUrl;
+
+            $out .= '<LI class="' . ( count($item->children) > 0 ? 'menu-branch' : 'menu-leaf' ) . '">';
+            if($url) {
+                $out .= '<A href="' . $item->itemUrl . '"' . $newwin . '>';
+            }
+            $out .= $item->itemTitle;
+            if($url) {
+                $out .= '</A>';
+            }
+            
+            if(count($item->children) > 0) {
+                 $out .= $this->traverse($item->children, $maxDepth, $depth+1);
+            }
+
+            $out .= '</LI>';
+
+        }
+
+        $out .= "</UL>";
+
+        return $out;
 
     }
 

@@ -122,7 +122,11 @@ class BibleReferenceParser {
         }
         
         function makeBibleRefFromArray($ary, $abbrev=true, $incBook=true, $incChap=true) {
-            
+
+            if($ary instanceof \StdClass) {
+                $ary = (array) $ary;
+            }
+
             $bookName = $this->aryBooks[$ary['book']][$abbrev?1:0];
             
             if ($bookName == "Psalms" && $ary['startChapter']) {
@@ -240,22 +244,20 @@ class BibleReferenceParser {
     
         function parseBibleRef($ref) {	
 
-            $ref = str_replace("vv", ":", $ref);
-            $ref = str_replace("v", ":", $ref);
-            
-
             $ref = str_replace(": ", ":", $ref);
             $ref = str_replace(" :", ":", $ref);
             $ref = str_replace("- ", "-", $ref);
             $ref = str_replace(" -", "-", $ref);
 
-            
-        
             $parsed = array();
         
             $split = explode(" ", $ref);
         
             $nums = array_pop($split);
+
+
+            $nums = str_replace("vv", ":", $nums);
+            $nums = str_replace("v", ":", $nums);
         
             $bkName = join(" ", $split);
             

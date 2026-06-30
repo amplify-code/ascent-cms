@@ -10,11 +10,13 @@ class PivotList extends Component
 
     public $label;
     public $name;
+    public $id;
     public $value;
 
     public $dataval;
 
     public $optionRoute;
+    public $storeRoute;
     public $labelField;
     public $addToAll;
     public $sortField;
@@ -22,6 +24,7 @@ class PivotList extends Component
     public $pivotFieldLabel;
     public $pivotFieldPlaceholder;
 
+    public $wrapper;
     public $class;
     /**
      * Create a new component instance.
@@ -31,7 +34,8 @@ class PivotList extends Component
     public function __construct($label, $name, $value, $optionRoute, $optionModel, $labelField, 
                                 $addToAll=null, $sortField=null, 
                                 $pivotField=null, $pivotFieldLabel=null, $pivotFieldPlaceholder=null,
-                                $class="")
+                                $class="", $storeRoute=null,
+                                $wrapper="bootstrapformgroup")
     {
      
         /*
@@ -43,6 +47,7 @@ class PivotList extends Component
         The field name (to match model property name)
         */
         $this->name = $name;
+        $this->id = str_replace(array('[', ']'), array('--', ''), $name);
         
         /*
         The value to set the component with on form load
@@ -56,6 +61,12 @@ class PivotList extends Component
         The URL to which the type-ahead/automplete terms will be sent
         */
         $this->optionRoute = $optionRoute;
+
+        /*
+        The URL to which requests to create a new item will be sent
+        (Optional - only use if simple values as typed wouuld make a valid item. i.e. simple themes etc)
+        */
+        $this->storeRoute = $storeRoute;
 
         /*
         The field from the autocomplete data to be used as the label for the individual elements
@@ -118,36 +129,56 @@ class PivotList extends Component
                     $cls = $this->optionModel;
                     $lbl = $this->labelField;
                     $cls = $cls::find($itm->id);
+
+                 
+
+                    if($cls) {
+
+                        $row['id'] = $itm->id;
+                     
+                        $row['label'] = $cls->$labelField;
+                       
+                        $data[] = $row;
                     
-                    $row['id'] = $itm->id;
-                    $row['label'] = $cls->$labelField;
-                    
-                    $data[] = $row;
+                    }
+
 
                 }
                 
                 $this->value = $data;
 
 
-        } else if (is_array($value)) { 
+        } else if (is_array($value) || is_object($value)) { 
 
             // incoming data is an array, so is in a different format 
             // to the Eloquent Collection above. Most likely from a validation 
             // failure elswhere on the form (i.e. formatted for Pivot Sync, rather than 
             // data from the query). 
+            // Also applicable if the component is used on a stack block (i.e. data stored as json)
   
             $data = array();
+            // dd($value);
             foreach($value as $idx=>$row) {
+
+                if(!is_array($row)) {
+                    $row = [];
+                }
 
                 $cls = $this->optionModel;
                 $lbl = $this->labelField;
                 $cls = $cls::find($idx);
+                    
+                if($cls) {
 
-                $row = array();    
-                $row['id'] = $idx;
-                $row['label'] = $cls->$labelField;
+                    // dump($idx);
+                    // dd($row);
 
-                $data[] = $row;
+                    //$row = //array();
+                    $row['id'] = $idx;
+                    $row['label'] = $cls->$labelField;
+
+                    $data[] = $row;
+                }
             }
 
             $this->value = $data;
@@ -156,7 +187,7 @@ class PivotList extends Component
             echo 'Unexpected Data Type';
         }
 
-
+        $this->wrapper = $wrapper;
         $this->class = $class;
         
     }

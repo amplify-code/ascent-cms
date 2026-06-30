@@ -12,6 +12,12 @@ function autoVersion($file, $min=true) {
 			return $file;
 		}
 		
+        if(env("DISABLE_AUTOMINIFICATION", false)) {
+            return $file;
+        }
+
+        
+
 		// if not a local file, or it just doesn't exist, bail
 		if(strpos($file, '/') !== 0 || !file_exists($_SERVER['DOCUMENT_ROOT'] . $file)) {
 			return $file;
@@ -73,7 +79,8 @@ function autoVersion($file, $min=true) {
 		    
 		}
 		
-		return '/min' . $tgt; 
+        // prepend the current hostname, and ensure the current protocol is used.
+		return '//' . $_SERVER['HTTP_HOST'] . '/min' . $tgt; 
 		
 }
 
@@ -83,5 +90,282 @@ function controller() {
 	// work out the current controller...
 	$ctrl = explode('@', Route::current()->getAction()['controller']);
 	return $ctrl[0];
+
+}
+
+
+function morphKey($model, $morph) {
+    return $model->{$morph . '_type'} . '_' . $model->{$morph . '_id'};
+}
+
+
+function obscure($str) {
+
+    if (strstr($str, '@')) {
+        $ary = explode('@', $str);
+        $words = explode('.', $ary[0]);
+        $out = array();
+        foreach($words as $word) {
+            if(strlen($word) > 2) {
+                $out[] = substr($word, 0, 1) . str_repeat('*', strlen($word)-2) . substr($word, -1, 1);
+            } else {
+                $out[] = $word;
+            }
+        }
+        return join('.', $out) . '@' . $ary[1];
+    }
+
+}
+
+
+function imageUrl($spec, $models) {
+
+    if(!is_array($models)) {
+        $models = [$models];
+    }
+
+    foreach($models as $model) {
+
+        if(!is_null($model)) {
+            $hi = \AscentCreative\CMS\Models\Image::getSpecForModel($model, $spec);
+            if($hi) {
+                return $hi->image;
+            }
+        }
+
+    }
+   
+    
+}
+
+
+/**
+ * 
+ * Convert a nested field name - xyz[0][abc] - to dot notation xyz.0.abc
+ * 
+ * @param mixed $name
+ * 
+ * @return string
+ */
+function dotName($name) : string {
+    return str_replace(array('[', ']'), array('.', ''), $name);
+}
+
+function embedVideo($url) {
+
+    return view('cms::helpers.embedvideo')->with('url', $url);
+
+}
+
+
+function cookieManager() {
+    return view("cms::cookiemanager.setup");
+}
+
+
+// converts a field name to a legal ID (i.e. removes [])
+function nameToId($name) {
+    return str_replace(array('[', ']'), array('--'. ''), $name);
+}
+
+
+/* Singleton Accessors */
+
+function headTitle() {
+	return app(\AscentCreative\CMS\Helpers\HeadTitle::class);
+}
+
+function packageAssets() {
+	return app(\AscentCreative\CMS\Helpers\PackageAssets::class);
+}
+
+function metadata($model=null) {
+    return view()->first(["metadata.tags", "cms::metadata.tags"])->with(['model'=>$model]);
+}
+
+
+function adminMenu() {
+	return app(\AscentCreative\CMS\Helpers\AdminMenu::class);
+}
+
+function menu($slug, $maxDepth=0, $classes='') {
+
+    $menu = AscentCreative\CMS\Models\Menu::where('slug', $slug)->first();
+
+    if (!$menu) {
+        return '';
+    } else {
+        return($menu->render($maxDepth, $classes));
+    }
+
+}
+
+
+/**
+ * 
+ * Renders basic HTML for the social media links (taken from the site settings)
+ * Uses cms::socials.item for each one, but can override in app's socials.item blade if present.
+ * 
+ * @return string
+ */
+function socials() : string {
+    
+    return view('cms::socials.render');
+
+}
+
+function sitebanner($max=1) {
+
+    $banner = AscentCreative\CMS\Models\SiteBanner::live()->orderBy('start_date', 'DESC')->first();
+
+    if (!$banner) {
+        return '';
+    } else {
+        return view('cms::sitebanner.show', ['banner'=>$banner]);
+    }
+
+}
+
+function contentstack($stackName) { 
+ 
+    $stack = AscentCreative\CMS\Models\Stack::where('name', $stackName)->first();
+
+    if ($stack) {
+        return view('cms::contentstack', ['stack'=>$stack]);
+    } else {
+        throw new \Illuminate\Database\Eloquent\ModelNotFoundException();
+    }
+
+}
+
+
+function prevent_submit_on_enter() {
+    return  '<input type="submit" disabled style="display: none"/>';
+}
+
+
+
+function getRoutePrefix() {
+
+    $prefix = '';
+
+    $route = null;
+    
+    try {
+
+        $url = url()->current();
+
+        if($url) {
+            $route = app('router')->getRoutes()->match(app('request')->create($url));
+        }
+        
+    } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e) {
+        
+    } 
+
+    if($route) {
+        return $route->action['prefix'];
+    }
+
+    return 'No Prefix';
+}
+
+
+
+
+/**
+ * 
+ * When a login challenge is presented, look up the intended URL and work out from the Route's prefix what blades should be used
+ * 
+ * @param mixed $action
+ * 
+ * @return array - the paths to use for the auth view blades
+ */
+function resolveAuthBladePaths($action) : array {
+
+    $prefix = '';
+
+    $route = null;
+    
+    try {
+
+        $url = request()->intended ?? session('url.intended');
+        if($url) {
+            $route = app('router')->getRoutes()->match(app('request')->create($url));
+        }
+        
+    } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e) {
+        
+    } 
+
+    if (!is_null($route)) {
+        $prefix = $route->action['prefix'];
+    }
+
+    // check the cms config file for specified paths
+    $paths = config('cms.authpaths.' . $prefix);
+
+    // if none found, create them from the prefix name
+    // (but fallback to the App's main auth blades so that not every prefix needs an auth)
+    if(is_null($paths)) {
+
+        // explode the prefix - we're going to handle multiple segments.
+        $pfxary = explode('/', $prefix);
+        $paths_custom = []; // the module / app specific paths
+        $paths_cms = []; // the cms module's global options
+      
+        // for each part of the path, create the various paths
+        foreach($pfxary as $pfx_part) {
+            if(trim($pfx_part) != '') {
+                $working_pfx[] = $pfx_part;
+                $pfx = join('.', $working_pfx);
+                $paths_custom[] = $pfx . '.auth';
+                $paths_cms[] = "cms::" . $pfx . '.auth';
+            }   
+           
+        }
+
+        // use the prefix name in a path:
+        $paths = array_merge(
+            array_reverse($paths_custom), // need to reverse the array so the more specific path is first
+            array_reverse($paths_cms), // need to reverse the array so the more specific path is first
+            ['auth']
+        );  
+
+    }
+
+    // appened the action / blade name to the paths
+    $paths = collect($paths)->transform(function($item) use ($action) {
+        return $item . '.' . $action;
+    })->toArray();
+
+    return $paths;
+
+}
+
+
+function strip_tags_leaving_spaces($input) {
+
+    return str_replace('  ', ' ', strip_tags(str_replace('<', ' <', $input)));
+
+}
+
+function storeReturnUrl() {
+    session(['return_url.' . md5(url()->current())=>$_SERVER['HTTP_REFERER']]);
+}
+
+function getReturnUrl($url=null) {
+    if (is_null($url)) {
+        $url = url()->current();
+    }
+
+    $key = md5($url);
+
+    if(session()->has('return_url')) {
+        $lookup = session()->get('return_url');
+        if(isset($lookup[$key])) {
+            return $lookup[$key];
+        }
+    }
 
 }

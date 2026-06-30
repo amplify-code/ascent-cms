@@ -17,15 +17,21 @@ class ForeignKeySelect extends Component
     public $label;
     public $name;
     public $value;
+    public $readonly;
 
   //  public $model;
     public $query;
     public $labelField;
+    public $sortField;
+    public $sortDirection;
     public $idField;
-    
+    public $nullItemLabel;
+
 
     public $wrapper;
     public $class;
+
+    public $attr;
 
 
     /**
@@ -33,23 +39,44 @@ class ForeignKeySelect extends Component
      *
      * @return void
      */
-    public function __construct($type, $label, $name, $value, $query, $labelField="title", $idField="id", $wrapper='bootstrapformgroup', $class='')
+    public function __construct($type='select', $label, $name, $value=[], $query, $labelField="title", $sortField=null, $sortDirection="ASC", $idField="id", $nullItemLabel=null, $wrapper='bootstrapformgroup', $class='', $readonly=false)
     {
         $this->type = $type;
         $this->label = $label;
         $this->name = $name;
         $this->value = $value;
+        $this->readonly = $readonly;
+        
+        if(is_null($nullItemLabel)) {
+            switch($type) {
+                case 'autocomplete':
+                    $nullItemLabel = "Enter a few characters to search...";
+                    break;
+
+                default:
+                    $nullItemLabel = "Please Select:";
+                    break;
+            }
+        }
+
+        $this->nullItemLabel = $nullItemLabel;
 
         // foreign model / table info:
           //  $this->model = $model;
 
-            $this->query = $query; // Builder instance allowing filters to be applied to the dataset
+        $this->query = $query; // Builder instance allowing filters to be applied to the dataset
 
-            $this->labelField = $labelField;
-            $this->idField = $idField;
+        $this->labelField = $labelField;
+        if(is_null($sortField)) {
+            $this->sortField = $labelField;
+        } else {
+            $this->sortField = $sortField;
+        }
+        $this->sortDirection = $sortDirection;
+        $this->idField = $idField;
 
-            $this->wrapper = $wrapper;
-            $this->class = $class;
+        $this->wrapper = $wrapper;
+        $this->class = $class;
         
 
     }

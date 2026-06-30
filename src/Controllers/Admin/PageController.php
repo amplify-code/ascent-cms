@@ -11,16 +11,22 @@ use Illuminate\Database\Eloquent\Model;
 class PageController extends AdminBaseController
 {
 
-    static $modelClass = 'AscentCreative\CMS\Models\Page';
+   // static $modelClass = 'AscentCreative\CMS\Models\Page';
+
+    static $modelClass = 'Page';
     static $bladePath = "cms::admin.pages";
 
+    public $indexSort = 'title';
+    public $indexSearchFields = ['title', 'content'];
+
+    public $ignoreScopes = ['published'];
 
     public function commitModel(Request $request, Model $model)
     {
 
       
     //    MenuItem::linkThis($this, $request->context_id, $request->context_type);
-
+      //  dd(request()->all());
       
       // $model->fillExtenders($request->all());
        $model->fill($request->all());
@@ -47,14 +53,38 @@ class PageController extends AdminBaseController
 
     public function rules($request, $model=null) {
 
-       return [
+        $rules = [
             'title' => 'required',
-        ]; 
+        ];
+
+        if(config('cms.content_editor') == 'stackeditor') {
+            $rules = array_merge(
+                $rules,
+                \AscentCreative\StackEditor\View\Components\Stack::getRules('content', $request->content)
+            );
+        }
+
+       return $rules;
+
+    }
+
+    public function messages($request, $model=null) : array {
+
+        $msgs = [];
+        
+        if(config('cms.content_editor') == 'stackeditor') {
+            $msgs = array_merge(
+                $msgs,
+                \AscentCreative\StackEditor\View\Components\Stack::getMessages('content', $request->content)
+            );
+        }
+
+        return $msgs;
 
     }
 
 
-    public function autocomplete(Request $request, string $term) {
+    public function autocomplete(Request $request, string $term) {  
 
         echo $term;
 

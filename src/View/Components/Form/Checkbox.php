@@ -7,11 +7,16 @@ use Illuminate\View\Component;
 class Checkbox extends Component
 {
 
-    public $type;
+   
     public $label;
     public $name;
     public $value;
+    public $readonly;
+    public $checkedValue;
+    public $uncheckedValue;
 
+    public $labelEscape;
+    public $labelAfter;
     public $wrapper;
     public $class;
 
@@ -20,14 +25,20 @@ class Checkbox extends Component
      *
      * @return void
      */
-    public function __construct($type, $label, $name, $value, $wrapper="bootstrapformgroup", $class='')
+    public function __construct($label, $name, $value, $labelEscape=true, $labelAfter=false, $checkedValue=1, $uncheckedValue=null, $wrapper="bootstrapformgroup", $class='', $readonly=false)
     {
-        $this->type = $type;
+       
         $this->label = $label;
         $this->name = $name;
         $this->value = $value;
+        $this->readonly = $readonly;
+
+        $this->checkedValue = $checkedValue;
+        $this->uncheckedValue = $uncheckedValue;
 
         $this->wrapper = $wrapper;
+        $this->labelEscape = $labelEscape;
+        $this->labelAfter = $labelAfter;
         $this->class = $class;
 
     }

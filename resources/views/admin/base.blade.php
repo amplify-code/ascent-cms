@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ headTitle()->add('Admin')->render(' :: ') }}</title>
+    <link rel="alternate icon" href="/storage/{!! AscentCreative\CMS\Models\File::find(app(AscentCreative\CMS\Settings\SiteSettings::class)->favicon)->filepath ?? '../vendor/ascent/cms/img/ascent-badge-trans.png' !!}">
+
+    
+ 
+    @style('/vendor/ascent/cms/css/bootstrap.min.css') 
+    {{-- @style("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css")  --}}
+    @style('/vendor/ascent/cms/bootstrap-icons/bootstrap-icons.css') 
+
+
+    @style('/vendor/ascent/cms/js/jquery-ui.min.css') 
+    @style('/vendor/ascent/cms/css/ascentcreative-cms-admin.css') 
+    @style('/vendor/ascent/cms/css/ascent-cms-core.css') 
+
+    @if(file_exists($_SERVER['DOCUMENT_ROOT'] . '/css/admin-custom.css'))
+        @style('/css/admin-custom.css')
+    @endif
+
+    @foreach(packageAssets()->getStylesheets() as $style)
+        @style($style)
+    @endforeach
+
+    @foreach(packageAssets()->getStylesheets('admin') as $style)
+        @style($style)
+    @endforeach
+
+ 
+
+    @style('/vendor/ascent/cms/dist/css/ascent-cms-bundle.css')
+    @style('/vendor/ascent/forms/dist/css/ascent-forms-bundle.css')
+    
+   
+    @stack('styles')
+   
+</head>
+<body id="admin">
+
+    {{-- <header>
+
+        @section('header')
+        @show
+
+    </header> --}}
+
+    <section>
+        @yield('pagebody')
+    </section>
+
+    {{-- <footer>
+
+    </footer> --}}
+
+    @scripttag('/vendor/ascent/cms/js/jquery-3.5.1.min.js')
+    @scripttag('/vendor/ascent/cms/js/jquery-ui.min.js')
+    @scripttag('/vendor/ascent/cms/js/bootstrap.bundle.min.js')
+    {{-- @scripttag('/vendor/ascent/cms/jquery/ascent.cms.modalLink.js') --}}
+    @scripttag('/vendor/ascent/cms/dist/js/ascent-cms-bundle.js')
+    @scripttag('/vendor/ascent/forms/dist/js/ascent-forms-bundle.js')
+
+    @stack('lib')
+    @stack('scripts')
+
+    @foreach(packageAssets()->getScripts() as $script)
+        @scripttag($script)
+    @endforeach
+
+    @foreach(packageAssets()->getScripts('admin') as $script)
+        @scripttag($script)
+    @endforeach
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -9,10 +9,20 @@
     }
   ],
   "require": {
+    "laravel/framework": "^11.0",
     "laravel/fortify": "^1.7",
     "matthiasmullie/minify": "^1.3",
-    "kalnoy/nestedset": "^5.0",
-    "spatie/laravel-permission": "^4.0"
+    "spatie/laravel-permission": "^6.0",
+    "doctrine/dbal": "^3.0",
+    "spatie/laravel-activitylog": "^4.0",
+    "spatie/laravel-settings": "^3.3.3",
+    "kalnoy/nestedset": "^6.0",
+    "jenssegers/agent": "^2.6",
+    "laravel/scout": "^10.11",
+    "guizoxxv/laravel-multi-size-image": "^0.2.0" ,
+    "ascentcreative/help": "dev-master",
+    "ascentcreative/forms": "dev-dev",
+    "ascentcreative/sitesearch": "dev-dev"
   },
   "autoload": {
     "psr-4": {
@@ -25,5 +35,20 @@
             "AscentCreative\\CMS\\CMSServiceProvider"
         ]
     }
-}
+  },
+  "repositories": [
+    {
+        "type": "vcs",
+        "url": "git@github.com:ascentcreative/laravel-instagram-feed.git"
+      },{
+        "type": "vcs",
+        "url": "git@github.com:ascentcreative/help.git"
+      },{
+        "type": "vcs",
+        "url": "git@github.com:ascentcreative/pagebuilder.git"
+      },{
+        "type": "vcs",
+        "url": "git@github.com:ascentcreative/sitesearch.git"
+      }
+    ]
 }
