@@ -249,13 +249,6 @@ class CMSServiceProvider extends ServiceProvider
        });   
     }
 
-     // for web requests, work out what the menu item might be.
-     if (!app()->runningInConsole()) {
-        $this->resolveMenuItem();
-    }
-    
-
-
     resolve(EngineManager::class)->extend('ascent', function () {
         return new \AscentCreative\CMS\Engines\AscentEngine;
     });
@@ -305,43 +298,6 @@ class CMSServiceProvider extends ServiceProvider
     });
 
     
-  }
-
-
-  /**
-   * 
-   */
-  public function resolveMenuItem() {
-
-    /**
-     * do the logic here so it only executes once?
-     * then pass it into the view composer
-     */
-   // $result = $model;
-
-    
-    // Log::debug('resolve menu item');
-
-    // $menuitem = \AscentCreative\CMS\Models\MenuItem::where(DB::Raw('concat(url, "%")'), 'like', '/' . request()->path())->first();
-
-    $menuitem = \AscentCreative\CMS\Models\MenuItem::whereRaw('"/' . request()->path() . '" like concat(url, "%")')->first(); //DB::Raw('concat(url, "%")'), 'like', '/' . request()->path())->first();
-
-    // dd($menuitem);
-
-    // $menuitem = \AscentCreative\CMS\Models\MenuItem::where('url', '/' . request()->path())->first();
-    
-    // dd(\AscentCreative\CMS\Models\MenuItem::where('url', '/' . request()->path())->first());
-
-    // Log::debug('end resolve');
-
-    // dd($menuitem);
-
-    view()->composer('*', function ($view) use ($menuitem) {
-
-        $view->with('menuitem', $menuitem);
-
-    });
-
   }
 
   // fortify commands
